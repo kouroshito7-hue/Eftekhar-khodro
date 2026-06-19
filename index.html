@@ -1,27 +1,369 @@
-1. **کل کد رو کپی کن** (از `<!DOCTYPE html>` تا `</html>`)
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>افتخار خودرو - نمایندگی‌های مجاز</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-2. **برو توی ریپوی GitHub**:
-   - `https://github.com/kouroshito7-hue/Eftekhar-khodro`
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            overflow-x: hidden;
+        }
 
-3. **اگه فایل `index.html` داری**:
-   - روی فایل کلیک کن
-   - دکمه مداد (Edit) رو بزن
-   - همه محتوای قدیمی رو پاک کن
-   - کد جدید رو paste کن
-   - پایین صفحه روی **Commit changes** بزن
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            z-index: 1000;
+            border-bottom: 2px solid #d4af37;
+        }
 
-4. **اگه فایل `index.html` نداری**:
-   - روی **Add file** کلیک کن
-   - **Create new file** رو بزن
-   - اسم فایل رو بنویس: `index.html`
-   - کد رو paste کن
-   - روی **Commit new file** بزن
+        .logo {
+            height: 70px;
+            width: auto;
+        }
 
-5. **فعال کردن GitHub Pages** (اگه هنوز فعال نکردی):
-   - برو **Settings**
-   - از منوی چپ **Pages** رو انتخاب کن
-   - توی قسمت **Source** → **Branch** رو روی `main` بذار
-   - **Save** کن
+        .hamburger {
+            position: absolute;
+            right: 30px;
+            width: 35px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 1001;
+        }
 
-بعد از چند دقیقه سایتت اینجا آماده میشه:
-**`https://kouroshito7-hue.github.io/Eftekhar-khodro/`**
+        .hamburger span {
+            width: 100%;
+            height: 4px;
+            background: #d4af37;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid #d4af37;
+            padding: 120px 30px;
+            transition: right 0.4s ease;
+            z-index: 999;
+        }
+
+        .menu.active {
+            right: 0;
+        }
+
+        .menu ul {
+            list-style: none;
+        }
+
+        .menu ul li {
+            margin-bottom: 25px;
+        }
+
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: block;
+        }
+
+        .menu ul li a:hover {
+            color: #d4af37;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .branch-text {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0.8);
+            z-index: 100;
+        }
+
+        .branch-text .code {
+            color: #d4af37;
+            font-size: 17px;
+        }
+
+        .indicators {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #d4af37;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .cta-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #fff;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+            z-index: 100;
+            transition: all 0.3s;
+            border: 2px solid #d4af37;
+        }
+
+        .cta-button:hover {
+            background: #d4af37;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                height: 65px;
+            }
+
+            .logo {
+                height: 55px;
+            }
+
+            .hamburger {
+                width: 30px;
+                height: 25right: 20px;
+            }
+
+            .menu {
+                width: 250px;
+                padding: 100px 20px 20px;
+            }
+
+            .slider-container {
+                margin-top: 65px;
+            }
+
+            .branch-text {
+                bottom: 80px;
+                right: 20px;
+                font-size: 16px;
+            }
+
+            .branch-text .code {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/images%20logo%20.png" alt="افتخار خودرو" class="logo">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="menu">
+        <ul>
+            <li><a href="#home">خانه</a></li>
+            <li><a href="#brands">برندها</a></li>
+            <li><a href="#branches">شعب</a></li>
+            <li><a href="#about">درباره ما</a></li>
+            <li><a href="#contact">تماس</a></li>
+        </ul>
+    </div>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+
+    <div class="slider-container">
+        <div class="slide active">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/1%20persia%20khodro.png" alt="پرشیا خودرو">
+        </div>
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/2%20fownix.png" alt="فونیکس">
+        </div>
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/3%20new.png" alt="فونیکس NEV">
+        </div>
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/4%20xtirm.png" alt="اکستریم">
+        </div>
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/5%20mvm.jpg" alt="ام‌وی‌ام">
+        </div>
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/6%20sipa.png" alt="سایپا">
+        </div>
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/7%20%20%D9%8Earian%20motor.png" alt="آرین موتور">
+        </div>
+    </div>
+
+    <div class="branch-text">
+        <span class="branch-name">پرشیا خودرو</span> - <span class="code">کد: 197</span>
+    </div>
+
+    <div class="indicators">
+        <span class="indicator active" onclick="goToSlide(0)"></span>
+        <span class="indicator" onclick="goToSlide(1)"></span>
+        <span class="indicator" onclick="goToSlide(2)"></span>
+        <span class="indicator" onclick="goToSlide(3)"></span>
+        <span class="indicator" onclick="goToSlide(4)"></span>
+        <span class="indicator" onclick="goToSlide(5)"></span>
+        <span class="indicator" onclick="goToSlide(6)"></span>
+    </div>
+
+    <a href="tel:02191004060" class="cta-button">📞 تماس با ما</a>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+        const branchText = document.querySelector('.branch-text');
+
+        const branches = [
+            { name: 'پرشیا خودرو', code: '197' },
+            { name: 'فونیکس', code: '368' },
+            { name: 'فونیکس NEV', code: '368' },
+            { name: 'اکستریم', code: '368' },
+            { name: 'ام‌وی‌ام', code: '368' },
+            { name: 'سایپا', code: '890210' },
+            { name: 'آرین موتور', code: '1728' }
+        ];
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            indicators.forEach(i => i.classList.remove('active'));
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            branchText.innerHTML = `<span class="branch-name">${branches[index].name}</span> - <span class="code">کد: ${branches[index].code}</span>`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        function toggleMenu() {
+            document.querySelector('.menu').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        setInterval(nextSlide, 5000);
+    </script>
+
+</body>
+</html>
