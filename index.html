@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گروه خودرویی افتخار</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            height: 70px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        .hamburger {
+            position: absolute;
+            right: 30px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #f4e4c1);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 80px 30px;
+            transition: 0.3s;
+            z-index: 999;
+        }
+
+        .menu.active {
+            right: 0;
+        }
+
+        .menu a {
+            display: block;
+            color: #d4af37;
+            text-decoration: none;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: 0.3s;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            padding-right: 10px;
+            color: #f4e4c1;
+        }
+
+        .slider-container {
+            margin-top: 100px;
+            padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-info {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            text-align: right;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .dots {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                height: 55px;
+            }
+
+            .slider {
+                height: 400px;
+            }
+
+            .slide-info {
+                font-size: 18px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/images%20logo%20.png?raw=true" alt="لوگو گروه افتخار" class="logo">
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <nav class="menu" id="menu">
+        <a href="#home">خانه</a>
+        <a href="#brands">برندها</a>
+        <a href="#branches">شعب</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">تماس</a>
+    </nav>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide active">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/1%20persia%20khodro.jpg?raw=true" alt="پرشیا خودرو">
+                <div class="slide-info">پرشیا خودرو - کد: 197</div>
+            </div>
+
+            <div class="slide">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/2%20fownix.jpg?raw=true" alt="فونیکس">
+                <div class="slide-info">فونیکس - کد: 368</div>
+            </div>
+
+            <div class="slide">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/3%20new.jpg?raw=true" alt="فونیکس NEV">
+                <div class="slide-info">فونیکس NEV - کد: 368</div>
+            </div>
+
+            <div class="slide">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/4%20xtirm.jpg?raw=true" alt="اکستریم">
+                <div class="slide-info">اکستریم - کد: 368</div>
+            </div>
+
+            <div class="slide">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/4%20xtirm.jpg?raw=true" alt="ام‌وی‌ام">
+                <div class="slide-info">ام‌وی‌ام - کد: 368</div>
+            </div>
+
+            <div class="slide">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/6%20sipa.jpg?raw=true" alt="سایپا">
+                <div class="slide-info">سایپا - کد: 890210</div>
+            </div>
+
+            <div class="slide">
+                <img src="https://github.com/kouroshito7-hue/Eftekhar-khodro/blob/main/7%20%20%D9%8Earian%20motor.jpg?raw=true" alt="آرین موتور">
+                <div class="slide-info">آرین موتور - کد: 1728</div>
+            </div>
+        </div>
+
+        <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            showSlide(currentIndex);
+        }
+
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+        }
+
+        setInterval(nextSlide, 4000);
+    </script>
+</body>
+</html>
