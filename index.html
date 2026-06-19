@@ -1,229 +1,27 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گروه خودرویی افتخار</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+1. **کل کد رو کپی کن** (از `<!DOCTYPE html>` تا `</html>`)
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
+2. **برو توی ریپوی GitHub**:
+   - `https://github.com/kouroshito7-hue/Eftekhar-khodro`
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 30px;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+3. **اگه فایل `index.html` داری**:
+   - روی فایل کلیک کن
+   - دکمه مداد (Edit) رو بزن
+   - همه محتوای قدیمی رو پاک کن
+   - کد جدید رو paste کن
+   - پایین صفحه روی **Commit changes** بزن
 
-        .logo {
-            height: 60px;
-            width: auto;
-        }
+4. **اگه فایل `index.html` نداری**:
+   - روی **Add file** کلیک کن
+   - **Create new file** رو بزن
+   - اسم فایل رو بنویس: `index.html`
+   - کد رو paste کن
+   - روی **Commit new file** بزن
 
-        /* Slider Container */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            margin-top: 0;
-        }
+5. **فعال کردن GitHub Pages** (اگه هنوز فعال نکردی):
+   - برو **Settings**
+   - از منوی چپ **Pages** رو انتخاب کن
+   - توی قسمت **Source** → **Branch** رو روی `main` بذار
+   - **Save** کن
 
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Indicators */
-        .indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 100;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: white;
-            width: 35px;
-            border-radius: 6px;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                height: 45px;
-            }
-
-            header {
-                padding: 10px 20px;
-            }
-
-            .cta-button {
-                font-size: 16px;
-                padding: 12px 30px;
-                bottom: 70px;
-            }
-
-            .indicators {
-                bottom: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header با لوگو -->
-    <header>
-        <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/images%20logo%20.png" alt="گروه خودرویی افتخار" class="logo">
-    </header>
-
-    <!-- Slider Container -->
-    <div class="slider-container">
-        <!-- Slide 1 - پرشیا خودرو -->
-        <div class="slide active">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/1%20persia%20khodro.jpg" alt="نمایندگی پرشیا خودرو">
-        </div>
-
-        <!-- Slide 2 - فونیکس -->
-        <div class="slide">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/2%20fownix.jpg" alt="نمایندگی فونیکس">
-        </div>
-
-        <!-- Slide 3 - نیو -->
-        <div class="slide">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/3%20new.jpg" alt="نمایندگی نیو">
-        </div>
-
-        <!-- Slide 4 - اکستریم -->
-        <div class="slide">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/4%20xtirm.jpg" alt="نمایندگی اکستریم">
-        </div>
-
-        <!-- Slide 5 - ام‌وی‌ام -->
-        <div class="slide">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/5%20mvm.jpg" alt="نمایندگی ام‌وی‌ام">
-        </div>
-
-        <!-- Slide 6 - سیپا -->
-        <div class="slide">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/6%20sipa.jpg" alt="نمایندگی سیپا">
-        </div>
-
-        <!-- Slide 7 - آرین موتور -->
-        <div class="slide">
-            <img src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/main/7%20%20%D9%8Earian%20motor.jpg" alt="نمایندگی آرین موتور">
-        </div>
-
-        <!-- Indicators -->
-        <div class="indicators">
-            <span class="indicator active" data-slide="0"></span>
-            <span class="indicator" data-slide="1"></span>
-            <span class="indicator" data-slide="2"></span>
-            <span class="indicator" data-slide="3"></span>
-            <span class="indicator" data-slide="4"></span>
-            <span class="indicator" data-slide="5"></span>
-            <span class="indicator" data-slide="6"></span>
-        </div>
-
-        <!-- CTA Button -->
-        <a href="#contact" class="cta-button">تماس با ما</a>
-    </div>
-
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator');
-        let currentSlide = 0;
-        const slideInterval = 5000; // 5 ثانیه
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        // Auto slide
-        let autoSlide = setInterval(nextSlide, slideInterval);
-
-        // Indicator click
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', () => {
-                clearInterval(autoSlide);
-                currentSlide = parseInt(indicator.getAttribute('data-slide'));
-                showSlide(currentSlide);
-                autoSlide = setInterval(nextSlide, slideInterval);
-            });
-        });
-    </script>
-</body>
-</html>
+بعد از چند دقیقه سایتت اینجا آماده میشه:
+**`https://kouroshito7-hue.github.io/Eftekhar-khodro/`**
