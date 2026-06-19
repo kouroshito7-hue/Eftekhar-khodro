@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>گروه خودرویی افتخار</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  header img.logo {
+    height: 60px;
+    object-fit: contain;
+  }
+
+  /* SLIDER */
+  .slider {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .slide.active { opacity: 1; }
+
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.3) 0%,
+      rgba(0,0,0,0.1) 40%,
+      rgba(0,0,0,0.5) 100%
+    );
+  }
+
+  /* SLIDE CONTENT */
+  .slide-content {
+    position: absolute;
+    bottom: 120px;
+    right: 40px;
+    z-index: 10;
+    text-align: right;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  }
+
+  .slide-content h2 {
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .slide-content p {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    opacity: 0.9;
+  }
+
+  /* INDICATORS */
+  .indicators {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .dot.active {
+    background: #fff;
+    transform: scale(1.3);
+  }
+
+  /* CTA */
+  .cta-btn {
+    position: fixed;
+    bottom: 70px;
+    left: 40px;
+    z-index: 100;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #c8a84b, #f0d060);
+    color: #111;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(200,168,75,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(200,168,75,0.7);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo"
+    src="https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/1777409781955.jpg"
+    alt="گروه خودرویی افتخار">
+</header>
+
+<div class="slider" id="slider">
+
+  <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/1%20persia%20khodro.png')">
+    <div class="slide-content">
+      <h2>نمایندگی پرشیا خودرو</h2>
+      <p>کد نمایندگی: ۱۹۷</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/2%20fownix.png')">
+    <div class="slide-content">
+      <h2>نمایندگی فونیکس</h2>
+      <p>کد نمایندگی: ۳۶۸</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/3%20new.png')">
+    <div class="slide-content">
+      <h2>فونیکس NEV</h2>
+      <p>کد نمایندگی: ۳۶۸</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/4%20xtirm.png')">
+    <div class="slide-content">
+      <h2>نمایندگی اکستریم</h2>
+      <p>کد نمایندگی: ۳۶۸</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/5%20mvm.jpg')">
+    <div class="slide-content">
+      <h2>نمایندگی ام‌وی‌ام</h2>
+      <p>کد نمایندگی: ۳۶۸</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/6%20sipa.png')">
+    <div class="slide-content">
+      <h2>نمایندگی سایپا</h2>
+      <p>کد نمایندگی: ۸۹۰۲۱۰</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://raw.githubusercontent.com/kouroshito7-hue/Eftekhar-khodro/951fce02b56cb9a08b50a0d0d9d1c4b255e575fe/7%20%20%D8%A2arian%20motor.png')">
+    <div class="slide-content">
+      <h2>نمایندگی آرین موتور</h2>
+      <p>کد نمایندگی: ۱۷۲۸</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="indicators" id="indicators">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+</div>
+
+<a class="cta-btn" href="#">مشاهده خودروها</a>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let current  = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  }
+
+  function next() {
+    goTo((current + 1) % slides.length);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  const slider = document.getElementById('slider');
+  slider.addEventListener('mouseenter', () => clearInterval(timer));
+  slider.addEventListener('mouseleave', resetTimer);
+
+  resetTimer();
+</script>
+
+</body>
+</html>
